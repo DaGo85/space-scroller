@@ -1,18 +1,19 @@
-import React from "react";
-import "../index.css";
+import React from "react"
+import "../index.css"
 
-function SpaceCard(image) {
+function SpaceCard({ image }) {
+  console.log(image.url)
   return (
-    <div class="card">
-      <img src={image.url} alt="random space image" style="width:100%" />
-      <div class="container">
+    <div className="card">
+      <img src={image.url} alt="random space image" />
+      <div className="container">
         <h4>
-          <b>{image.name}</b>
+          <b>{image.title}</b>
         </h4>
-        <p>{image.random}</p>
+        <p>{image.explanation}</p>
       </div>
     </div>
-  );
+  )
 }
 
-export default SpaceCard;
+export default SpaceCard

@@ -5,8 +5,10 @@ import SpaceCard from "./components/SpaceCard"
 
 function App() {
   const [pageNumber, setPageNumber] = useState(1)
+  const [startDate, setStartDate] = useState(Date.now())
+  const [endDate, setEndDate] = useState(Date.now())
 
-  const { images, loading, error } = useGetSpaceImages(pageNumber)
+  const { images, loading, error } = useGetSpaceImages(startDate)
 
   const observer = useRef()
   const lastImageElementRef = useCallback(
@@ -28,12 +30,12 @@ function App() {
       {images.map((image, index) => {
         if (images.length === index + 1) {
           return (
-            <div ref={lastImageElementRef} key={image}>
+            <div ref={lastImageElementRef} key={image.date}>
               <SpaceCard image={image} />
             </div>
           )
         } else {
-          return <SpaceCard image={image} key={image} />
+          return <SpaceCard image={image} key={image.date} />
         }
       })}
       <div>{loading && "Loading..."}</div>

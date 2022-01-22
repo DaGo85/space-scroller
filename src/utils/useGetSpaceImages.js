@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 
-export default function useGetSpaceImages(startDate, endDate) {
+export default function useGetSpaceImages() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [images, setImages] = useState([])
   const apiKey = "WzbzQWjKxKCsZlOf1inUX2Xt4qLMevFm078dCEpO"
+  const endDate = "2022-01-22"
+  const startDate = "2022-01-20"
+
   useEffect(() => {
     setImages([])
   }, [])
@@ -17,12 +20,12 @@ export default function useGetSpaceImages(startDate, endDate) {
     axios({
       method: "GET",
       url: `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`,
-      //params: { start_date, end_date: pageNumber },
+      params: { start_date: startDate, end_date: endDate },
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
         setImages((prevImages) => {
-          return [...new Set([...prevImages, ...res.data.docs.map])]
+          return [...prevImages, ...res.data]
         })
         setLoading(false)
       })
@@ -31,7 +34,7 @@ export default function useGetSpaceImages(startDate, endDate) {
         setError(true)
       })
     return () => cancel()
-  }, [query, pageNumber])
+  }, [endDate])
 
-  return { loading, error, books }
+  return { loading, error, images }
 }

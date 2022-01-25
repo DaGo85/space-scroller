@@ -1,8 +1,28 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.nasa-img {
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 5px; /* 5px rounded corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  height: 80vh;
+  margin-bottom: 20px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -13,8 +33,43 @@
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
+  max-width: 80vw;
+  max-height: 80vh;
 }
 
 img {
   border-radius: 5px 5px 0 0;
+}
+
+@keyframes zoominoutsinglefeatured {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+.single-featured-image-header img {
+  animation: zoominoutsinglefeatured 15s forwards;
+}
+
+/* [1] The container */
+.img-hover-zoom {
+  max-height: 80vh;
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  max-height: 100%;
+  transition: transform 0.5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
 }

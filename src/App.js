@@ -26,7 +26,9 @@ function App() {
   )
 
   return (
-    <>
+    <div className="app-container">
+      <h1>SPACE SCROLLER</h1>
+      <h2>An infinite scroller through space and stars!</h2>
       {images.map((image, index) => {
         if (images.length === index + 1) {
           return (
@@ -40,7 +42,7 @@ function App() {
       })}
       <div>{loading && "Loading..."}</div>
       <div>{error && "Error"}</div>
-    </>
+    </div>
   )
 }
 

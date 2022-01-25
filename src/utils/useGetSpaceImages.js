@@ -7,7 +7,7 @@ export default function useGetSpaceImages() {
   const [images, setImages] = useState([])
   const apiKey = "WzbzQWjKxKCsZlOf1inUX2Xt4qLMevFm078dCEpO"
   const endDate = "2022-01-22"
-  const startDate = "2022-01-20"
+  const startDate = "2022-01-15"
 
   useEffect(() => {
     setImages([])

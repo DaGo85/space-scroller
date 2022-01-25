@@ -4,8 +4,8 @@ import "../index.css"
 function SpaceCard({ image }) {
   console.log(image.url)
   return (
-    <div className="card">
-      <img src={image.url} alt="random space image" />
+    <div className="card ">
+      <img className="nasa-img" src={image.url} alt="random space image" />
       <div className="container">
         <h4>
           <b>{image.title}</b>

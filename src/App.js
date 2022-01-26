@@ -2,13 +2,14 @@ import React, { useState, useRef, useCallback } from "react"
 import "./App.css"
 import useGetSpaceImages from "./utils/useGetSpaceImages"
 import SpaceCard from "./components/SpaceCard"
+import dayjs from "dayjs"
 
 function App() {
-  const [pageNumber, setPageNumber] = useState(1)
-  const [startDate, setStartDate] = useState(Date.now())
-  const [endDate, setEndDate] = useState(Date.now())
-
-  const { images, loading, error } = useGetSpaceImages(startDate)
+  const [startDate, setStartDate] = useState(dayjs())
+  const [endDate, setEndDate] = useState(startDate.subtract(2, "days")) //- 86400000
+  console.log(startDate + "date")
+  console.log(endDate + "enddate")
+  const { images, loading, error } = useGetSpaceImages(startDate, endDate)
 
   const observer = useRef()
   const lastImageElementRef = useCallback(
@@ -17,7 +18,8 @@ function App() {
       if (observer.current) observer.current.disconnect()
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setPageNumber((prevPageNumber) => prevPageNumber + 1)
+          setStartDate(endDate.subtract(1, "days"))
+          setEndDate((endDate) => endDate.subtract(2, "days"))
         }
       })
       if (node) observer.current.observe(node)
@@ -32,12 +34,12 @@ function App() {
       {images.map((image, index) => {
         if (images.length === index + 1) {
           return (
-            <div ref={lastImageElementRef} key={image.date}>
-              <SpaceCard image={image} />
+            <div ref={lastImageElementRef} key={Math.random()}>
+              <SpaceCard image={image} index={index} />
             </div>
           )
         } else {
-          return <SpaceCard image={image} key={image.date} />
+          return <SpaceCard image={image} index={index} key={Math.random()} />
         }
       })}
       <div>{loading && "Loading..."}</div>

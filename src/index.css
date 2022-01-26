@@ -19,10 +19,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
 
   height: 80vh;
   margin-bottom: 20px;
+}
+
+.ltr {
+  flex-direction: row;
+}
+
+.rtl {
+  flex-direction: row-reverse;
 }
 
 /* On mouse-over, add a deeper shadow */

@@ -6,7 +6,7 @@ import dayjs from "dayjs"
 
 function App() {
   const [startDate, setStartDate] = useState(dayjs())
-  const [endDate, setEndDate] = useState(startDate.subtract(10, "days"))
+  const [endDate, setEndDate] = useState(startDate.subtract(5, "days"))
   console.log(startDate + "date")
   console.log(endDate + "enddate")
   const { images, loading, error, hasMore } = useGetSpaceImages(
@@ -22,7 +22,7 @@ function App() {
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           setStartDate(endDate.subtract(1, "days"))
-          setEndDate((endDate) => endDate.subtract(10, "days"))
+          setEndDate((endDate) => endDate.subtract(5, "days"))
         }
       })
       if (node) observer.current.observe(node)

@@ -4,8 +4,6 @@ import "../index.css"
 function SpaceCard({ image, index }) {
   const direction = index % 2 ? "rtl" : "ltr"
   const videoOrNot = image.url.includes("jpg")
-  console.log(videoOrNot)
-  console.log(image.url)
 
   return (
     <div className={`${direction} card`}>
@@ -15,11 +13,13 @@ function SpaceCard({ image, index }) {
         <iframe src={image.url} className="nasa-img nasa-video"></iframe>
       )}
       <div className="container">
+        <em>
+          <p className="text">Information of {image.date}</p>{" "}
+        </em>
         <h4>
-          <b>{image.title}</b>
+          <b className="text">{image.title}</b>
         </h4>
-        <p>{image.explanation}</p>
-        <p>{image.date}</p>
+        <p className="text">{image.explanation}</p>
       </div>
     </div>
   )

@@ -6,11 +6,6 @@
   justify-content: center;
 }
 
-.nasa-img {
-  max-width: 80vw;
-  max-height: 80vh;
-}
-
 .card {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -19,7 +14,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: 80vh;
   margin-bottom: 20px;
 }
@@ -32,6 +26,11 @@
   flex-direction: row-reverse;
 }
 
+.nasa-img {
+  width: 50%;
+  max-height: 100%;
+}
+
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -40,7 +39,7 @@
 /* Add some padding inside the card container */
 .container {
   padding: 2px 16px;
-  max-width: 80vw;
+  width: 50%;
   max-height: 80vh;
 }
 

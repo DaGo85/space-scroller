@@ -8,16 +8,9 @@ export default function useGetSpaceImages(startDate, endDate) {
   const apiKey = "WzbzQWjKxKCsZlOf1inUX2Xt4qLMevFm078dCEpO"
   const endDateT = endDate.format("YYYY-MM-DD")
   const startDateT = startDate.format("YYYY-MM-DD")
+  const [hasMore, setHasMore] = useState(false)
   console.log(endDateT)
   console.log(startDateT)
-  console.log(startDate + "test")
-  console.log(endDate + "test2")
-  //const endDate = "2022-01-22"
-  //const startDate = "2022-01-15"
-
-  useEffect(() => {
-    setImages([])
-  }, [])
 
   useEffect(() => {
     setLoading(true)
@@ -37,7 +30,7 @@ export default function useGetSpaceImages(startDate, endDate) {
         setImages((prevImages) => {
           return [...prevImages, ...res.data]
         })
-
+        setHasMore(res.data.length > 0)
         setLoading(false)
       })
       .catch((e) => {
@@ -45,7 +38,7 @@ export default function useGetSpaceImages(startDate, endDate) {
         setError(true)
       })
     return () => cancel()
-  }, [endDate])
+  }, [endDateT])
 
-  return { loading, error, images }
+  return { loading, error, images, hasMore }
 }

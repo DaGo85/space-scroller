@@ -6,10 +6,13 @@ import dayjs from "dayjs"
 
 function App() {
   const [startDate, setStartDate] = useState(dayjs())
-  const [endDate, setEndDate] = useState(startDate.subtract(2, "days")) //- 86400000
+  const [endDate, setEndDate] = useState(startDate.subtract(10, "days"))
   console.log(startDate + "date")
   console.log(endDate + "enddate")
-  const { images, loading, error } = useGetSpaceImages(startDate, endDate)
+  const { images, loading, error, hasMore } = useGetSpaceImages(
+    startDate,
+    endDate
+  )
 
   const observer = useRef()
   const lastImageElementRef = useCallback(
@@ -17,14 +20,14 @@ function App() {
       if (loading) return
       if (observer.current) observer.current.disconnect()
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
+        if (entries[0].isIntersecting && hasMore) {
           setStartDate(endDate.subtract(1, "days"))
-          setEndDate((endDate) => endDate.subtract(2, "days"))
+          setEndDate((endDate) => endDate.subtract(10, "days"))
         }
       })
       if (node) observer.current.observe(node)
     },
-    [loading]
+    [loading, hasMore]
   )
 
   return (

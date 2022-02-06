@@ -3,6 +3,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: white;
+  font-family: Roboto;
+  background-image: url("./assets/background-space.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px;
+  background-size: cover;
 }
 
 .card {
@@ -14,6 +22,8 @@
   justify-content: center;
   margin-bottom: 20px;
   width: 95vw;
+  background-color: dark-grey;
+  max-width: 1800px;
 }
 
 .ltr {
@@ -48,7 +58,6 @@
 .text {
   margin: 1em;
   font-size: 19px;
-  font-family: "Roboto";
 }
 
 img {
@@ -82,7 +91,6 @@ img {
   .text {
     margin: 1em;
     font-size: 19px;
-    font-family: Roboto;
   }
 }
 

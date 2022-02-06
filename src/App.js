@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react"
-import "./App.css"
+import "./index.css"
 import useGetSpaceImages from "./utils/useGetSpaceImages"
 import SpaceCard from "./components/SpaceCard"
 import dayjs from "dayjs"
